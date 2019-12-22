@@ -1,0 +1,109 @@
+.nobutton {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.nobutton::after {
+  border: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-space-a {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex_1 {
+  flex: 1;
+}
+
+.flex_2 {
+  flex: 2;
+}
+
+.flex_3 {
+  flex: 3;
+}
+
+.flex-pack-j {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-align-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.flex-align-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-c {
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-g {
+  flex-grow: 1;
+}
+
+.bottom-fixed {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.ell {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.row-number-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

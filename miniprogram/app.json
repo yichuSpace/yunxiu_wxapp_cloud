@@ -2,7 +2,9 @@
   "pages": [
     "pages/playlist/index",
     "pages/profile/index",
-    "pages/blog/index"
+    "pages/blog/index",
+    "pages/musiclist/index",
+    "pages/playDetail/index"
   ],
   "requiredBackgroundModes": [
     "audio"
@@ -11,7 +13,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#d43c33",
-    "navigationBarTitleText": "音乐",
+    "navigationBarTitleText": "云袖",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

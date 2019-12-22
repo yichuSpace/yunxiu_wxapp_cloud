@@ -1,2 +1,13 @@
-<!--miniprogram/pages/playlist/index.wxml-->
-<text bindtap="open">miniprogram/pages/playlist/index.wxml</text>
+<swiper indicator-dots="true" autoplay="true" interval="2000" duration="1000">
+  <block wx:for="{{swiperImgUrls}}" wx:key="url">
+    <swiper-item>
+      <image class="img" src="{{item.url}}" mode="widthFix"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="playlist-container flex-wrap flex-pack-j ">
+  <block wx:for="{{songSheetList}}" wx:key="_id">
+    <x-songSheetListItem songSheetListItem="{{item}}"></x-songSheetListItem>
+  </block>
+</view>

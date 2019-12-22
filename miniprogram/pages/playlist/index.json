@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "x-songSheetListItem": "/components/songSheetListItem/index"
+  },
+  "enablePullDownRefresh": true
 }
