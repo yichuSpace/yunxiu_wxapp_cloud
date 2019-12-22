@@ -2,17 +2,19 @@ let musiclist = [] //歌单列表
 let nowPlayingIndex = 0 // 正在播放歌曲的index
 const backgroundAudioManager = wx.getBackgroundAudioManager() // 获取全局唯一的背景音频管理器
 const app = getApp()
-
+let time=''
 Page({
   data: {
     picUrl: '',
     isPlaying: false, // false表示不播放，true表示正在播放
     isLyricShow: false, //表示当前歌词是否显示
     lyric: '', //歌词
+    isHasAuth: true, //是否有权限
     isSame: false, // 表示是否为同一首歌
   },
 
   onLoad: function(options) {
+    console.log(options)
     nowPlayingIndex = options.index
     musiclist = wx.getStorageSync('musiclist')
     this.loadMusicDetail(options.musicId)
@@ -24,14 +26,15 @@ Page({
     let music = musiclist[nowPlayingIndex] //播放音乐
     this.setData({
       picUrl: music.al.picUrl,
-      isSame
+      isSame,
+      isHasAuth: true
     })
     if (!isSame) {
       backgroundAudioManager.stop()
       wx.showLoading({
         title: '歌曲加载中',
       })
-      this.loadMusicInfo(musicId, music)// 加载音乐信息
+      this.loadMusicInfo(musicId, music) // 加载音乐信息
     } else {
       this.setData({
         isPlaying: true
@@ -44,22 +47,31 @@ Page({
     })
   },
   // 加载音乐信息
-  loadMusicInfo(musicId, music) {
+  async loadMusicInfo(musicId, music) {
     wx.cloud.callFunction({
       name: 'music',
       data: {
         musicId,
         $url: 'musicUrl',
       }
-    }).then((res) => {
+    }).then(async(res) => {
       const {
         data
-      } = JSON.parse(res.result)
+      } = res.result
 
       if (data[0].url == null) {
-        wx.showToast({
-          title: '无权限播放',
+        this.setData({
+          isPlaying: false,
+          isHasAuth: false
         })
+        await wx.showToast({
+          title: '无权限播放',
+          icon:'none',
+          duration: 3000,
+        })
+       time= setTimeout(() => {
+          this.onNext()
+        }, 3000)
         return
       }
       if (!this.data.isSame) {
@@ -87,9 +99,10 @@ Page({
         $url: 'lyric',
       }
     }).then(res => {
+      console.log(res)
       let {
         lrc
-      } = JSON.parse(res.result)
+      } = res.result
       // console.log('歌词', lrc.lyric)
       let lyric = lrc && lrc.lyric ? lrc.lyric : '暂无歌词'
       this.setData({
@@ -106,6 +119,10 @@ Page({
   },
   // 上一首
   onPrev() {
+    console.log(time)
+    if (time){
+      clearTimeout(time)
+    }
     nowPlayingIndex--
     if (nowPlayingIndex < 0) {
       nowPlayingIndex = musiclist.length - 1
@@ -114,6 +131,9 @@ Page({
   },
   // 下一首
   onNext() {
+    if (time) {
+      clearTimeout(time)
+    }
     nowPlayingIndex++
     if (nowPlayingIndex === musiclist.length) {
       nowPlayingIndex = 0

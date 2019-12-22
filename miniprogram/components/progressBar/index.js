@@ -11,12 +11,26 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    isSame: Boolean
+    isSame: Boolean,
+    isHasAuth:Boolean
   },
-
-  /**
-   * 组件的初始数据
-   */
+  observers: {
+    ['songSheetListItem.playCount'](count) {
+      this.setData({
+        _count: this._tranNumber(count, 2)
+      })
+    },
+    isHasAuth(val){
+      if(!val){
+        this.setData({
+          showTime: {
+            currentTime: '00:00',
+            totalTime: '00:00',
+          }
+        })
+      }
+    }
+  },
   data: {
     showTime: {
       currentTime: '00:00',

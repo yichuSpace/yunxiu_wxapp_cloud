@@ -45,13 +45,13 @@ exports.main = async(event, context) => {
 
   app.router('musicUrl', async (ctx, next) => {
     ctx.body = await rp(BASE_URL + `/song/url?id=${event.musicId}`).then((res) => {
-      return res
+      return JSON.parse(res)
     })
   })
 
   app.router('lyric', async (ctx, next) => {
     ctx.body = await rp(BASE_URL + `/lyric?id=${event.musicId}`).then((res) => {
-      return res
+      return JSON.parse(res)
     })
   })
   

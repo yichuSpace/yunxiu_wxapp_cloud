@@ -51,10 +51,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "pages/musiclist/index",
 					"pathName": "pages/musiclist/index",
-					"query": "playlistId=1992871583",
+					"query": "playlistId= 2181695887",
 					"scene": null
 				},
 				{
