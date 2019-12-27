@@ -4,5 +4,4 @@
       <view class="lyric {{index==nowLyricIndex?'hightlight-lyric': ''}}">{{item.lrc}}</view>
     </block>
   </view>
-
 </scroll-view>
