@@ -13,6 +13,7 @@ const MAX_LIMIT = 100 //请求数据的最大数量值
 exports.main = async (event, context) => {
   const countResult = await songSheetListCollection.count()
   const total = countResult.total //获取总数
+  console.log('当前总数')
   //请求次数
   const batchTimes = Math.ceil(total / MAX_LIMIT)
   const tasks = [] //返回请求列表
