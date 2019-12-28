@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "x-login": "/components/login/index",
+    "x-bottom-modal": "/components/bottomModal/index"
+  }
+}

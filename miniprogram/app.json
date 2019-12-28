@@ -4,7 +4,9 @@
     "pages/profile/index",
     "pages/blog/index",
     "pages/musiclist/index",
-    "pages/playDetail/index"
+    "pages/playDetail/index",
+    "pages/blogEdit/index",
+    "pages/blogComment/index"
   ],
   "requiredBackgroundModes": [
     "audio"

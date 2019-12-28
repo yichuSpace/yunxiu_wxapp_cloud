@@ -63,6 +63,20 @@
 					"pathName": "pages/playDetail/index",
 					"query": "musicId= 85580&index=3",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/blog/index",
+					"pathName": "pages/blog/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/blogEdit/index",
+					"pathName": "pages/blogEdit/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
