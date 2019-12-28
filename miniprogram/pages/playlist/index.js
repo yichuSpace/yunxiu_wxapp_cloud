@@ -36,12 +36,14 @@ Page({
       }
     }).then((res) => {
       const {
-        data,
+        data: {
+          musiclist
+        },
         code
       } = res.result
       if (code === 200) {
         this.setData({
-          songSheetList: this.data.songSheetList.concat(data)
+          songSheetList: this.data.songSheetList.concat(musiclist)
         })
       }
       wx.stopPullDownRefresh()
@@ -57,7 +59,7 @@ Page({
     this.getSongSheetList()
     // this._getSwiper()
   },
-  
+
   // 上拉加载
   onReachBottom: function() {
     this.getSongSheetList()

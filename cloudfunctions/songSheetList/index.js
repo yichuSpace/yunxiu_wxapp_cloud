@@ -10,10 +10,10 @@ const songSheetListCollection = db.collection('songSheetList') //数据集合
 
 const MAX_LIMIT = 100 //请求数据的最大数量值
 
-exports.main = async (event, context) => {
+exports.main = async(event, context) => {
   const countResult = await songSheetListCollection.count()
   const total = countResult.total //获取总数
-  console.log('当前总数')
+  console.log('当前总数', total)
   //请求次数
   const batchTimes = Math.ceil(total / MAX_LIMIT)
   const tasks = [] //返回请求列表
@@ -42,7 +42,7 @@ exports.main = async (event, context) => {
   const newData = []
 
   // 旧数据与新数据去重
-  songSheetList.forEach(item=>{
+  songSheetList.forEach(item => {
     let flag = true
     for (let j = 0, len2 = list.data.length; j < len2; j++) {
       if (item.id === list.data[j].id) {
@@ -55,8 +55,8 @@ exports.main = async (event, context) => {
     }
   })
   // 将数据列表添加到数据集合
-  if (newData.length>0){
-    newData.forEach(async (item) => {
+  if (newData.length > 0) {
+    for (const item of newData){
       await songSheetListCollection.add({
         data: {
           ...item,
@@ -67,11 +67,17 @@ exports.main = async (event, context) => {
       }).catch((err) => {
         console.error('插入失败')
       })
-    })
-  }
-
-  return {
-    type:'success',
-    data: newData.length
+    }
+    return {
+      type: 'success',
+      data: newData.length,
+      msg:'数据更新成功'
+    }
+  } else {
+    return {
+      type: 'success',
+      data: newData.length,
+      msg: '暂无数据更新'
+    }
   }
 }

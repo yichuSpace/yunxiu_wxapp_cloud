@@ -40,8 +40,7 @@ Component({
         return numStr
       } else if (numStr.length >= 6 && numStr.length <= 8) {
         let decimal = numStr.substring(numStr.length - 4, numStr.length - 4 + point)
-        return parseFloat(parseInt(num / 10000) + '.' + decimal) +
-          '万'
+        return parseFloat(parseInt(num / 10000) + '.' + decimal) + '万'
       } else if (numStr.length > 8) {
         let decimal = numStr.substring(numStr.length - 8, numStr.length - 8 + point)
         return parseFloat(parseInt(num / 100000000) + '.' + decimal) + '亿'

@@ -12,7 +12,7 @@ Component({
    */
   properties: {
     isSame: Boolean,
-    isHasAuth:Boolean
+    isHasAuth: Boolean
   },
   observers: {
     ['songSheetListItem.playCount'](count) {
@@ -20,8 +20,8 @@ Component({
         _count: this._tranNumber(count, 2)
       })
     },
-    isHasAuth(val){
-      if(!val){
+    isHasAuth(val) {
+      if (!val) {
         this.setData({
           showTime: {
             currentTime: '00:00',
@@ -54,16 +54,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 拖动
     onChange(event) {
-      // console.log(event)
-      // 拖动
       if (event.detail.source == 'touch') {
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth) * 100
         this.data.movableDis = event.detail.x
         isMoving = true
-        // console.log('change', isMoving)
       }
     },
+    // 拖到结束
     onTouchEnd() {
       const currentTimeFmt = this._dateFormat(Math.floor(backgroundAudioManager.currentTime))
       this.setData({
@@ -73,14 +72,12 @@ Component({
       })
       backgroundAudioManager.seek(duration * this.data.progress / 100)
       isMoving = false
-      // console.log('end', isMoving)
     },
     _getMovableDis() {
       const query = this.createSelectorQuery()
       query.select('.movable-area').boundingClientRect()
       query.select('.movable-view').boundingClientRect()
       query.exec((rect) => {
-        // console.log(rect)
         movableAreaWidth = rect[0].width
         movableViewWidth = rect[1].width
         // console.log(movableAreaWidth, movableViewWidth)
@@ -166,8 +163,7 @@ Component({
     },
     // 格式化时间
     _dateFormat(sec) {
-      // 分钟
-      const min = Math.floor(sec / 60)
+      const min = Math.floor(sec / 60) // 分钟
       sec = Math.floor(sec % 60)
       return {
         'min': this._parse0(min),

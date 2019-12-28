@@ -2,7 +2,7 @@ let musiclist = [] //歌单列表
 let nowPlayingIndex = 0 // 正在播放歌曲的index
 const backgroundAudioManager = wx.getBackgroundAudioManager() // 获取全局唯一的背景音频管理器
 const app = getApp()
-let time=''
+let time = ''
 Page({
   data: {
     picUrl: '',
@@ -66,10 +66,10 @@ Page({
         })
         await wx.showToast({
           title: '无权限播放',
-          icon:'none',
+          icon: 'none',
           duration: 3000,
         })
-       time= setTimeout(() => {
+        time = setTimeout(() => {
           this.onNext()
         }, 3000)
         return
@@ -120,7 +120,7 @@ Page({
   // 上一首
   onPrev() {
     console.log(time)
-    if (time){
+    if (time) {
       clearTimeout(time)
     }
     nowPlayingIndex--

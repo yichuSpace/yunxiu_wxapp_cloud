@@ -1,4 +1,3 @@
-// components/musiclist/musiclist.js
 const app = getApp()
 Component({
   /**
@@ -20,7 +19,6 @@ Component({
       this.setData({
         playingId: parseInt(app.getPlayMusicId())
       })
-
     }
   },
 
@@ -28,14 +26,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 选择音乐
     onSelect(event) {
-      // 事件源 事件处理函数 事件对象 事件类型
       const { musicid, index} = event.currentTarget.dataset
       this.setData({
         playingId: musicid
       })
       wx.navigateTo({
-        url: `../../pages/playDetail/index?musicId=${musicid}&index=${ds.index}`,
+        url: `/pages/playDetail/index?musicId=${musicid}&index=${index}`,
       })
     }
   }

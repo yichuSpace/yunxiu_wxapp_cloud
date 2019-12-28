@@ -36,6 +36,4 @@ Page({
   _setMusiclist() {
     wx.setStorageSync('musiclist', this.data.musiclist)
   },
-
-
 })
