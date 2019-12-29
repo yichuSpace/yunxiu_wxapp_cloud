@@ -1,27 +1,25 @@
-// pages/blog/blog.js
-// 搜索的关键字
-let keyword = ''
+let keyword = '' // 搜索的关键字
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    // 控制底部弹出层是否显示
-    modalShow: false,
-    blogList: [],
+    modalShow: false, // 控制底部弹出层是否显示
+    blogList: [],//列表
   },
+
+  onLoad: function(options) {
+    this.loadBlogList()
+  },
+
   // 发布功能
   onPublish() {
     // 判断用户是否授权
     wx.getSetting({
       success: (res) => {
-        console.log(res)
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
             success: (res) => {
-              this.onLoginSuccess({
-                detail: res.userInfo
+              wx.setStorageSync('userInfo', res.userInfo)
+              wx.navigateTo({
+                url: `../blogEdit/index`,
               })
             }
           })
@@ -33,36 +31,24 @@ Page({
       }
     })
   },
-  onLoginSuccess(event) {
-    console.log(event)
-    const detail = event.detail
-    wx.navigateTo({
-      url: `../blogEdit/index?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
-    })
-  },
+  // 登录失败
   onLoginFail() {
     wx.showModal({
       title: '授权用户才能发布',
       content: '',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this._loadBlogList()
-  },
-
   // 搜索
   onSearch(event) {
     this.setData({
       blogList: []
     })
     keyword = event.detail.keyword
-    this._loadBlogList(0)
+    this.loadBlogList(0)
   },
 
-  _loadBlogList(start = 0) {
+  // 加载列表数据
+  loadBlogList(start = 0) {
     wx.showLoading({
       title: '拼命加载中',
     })
@@ -77,7 +63,7 @@ Page({
     }).then((res) => {
       console.log(res.result.data)
       this.setData({
-        blogList: this.data.blogList.concat(res.result.data)
+        blogList: start === 0 ? res.result.data: this.data.blogList.concat(res.result.data)
       })
       wx.hideLoading()
       wx.stopPullDownRefresh()
@@ -96,17 +82,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.setData({
-      blogList: []
-    })
-    this._loadBlogList(0)
+    this.loadBlogList(0)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    this._loadBlogList(this.data.blogList.length)
+    this.loadBlogList(this.data.blogList.length)
   },
 
   /**

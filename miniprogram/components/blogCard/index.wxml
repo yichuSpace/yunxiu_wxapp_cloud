@@ -1,5 +1,5 @@
 <view class="blog">
-  <view class="blog-title">
+  <view class="blog-title flex-align-center">
     <image class="blog-portrait" src="{{blog.avatarUrl}}"></image>
     <view class="blog-box">
       <view class="blog-nickName">{{blog.nickName}}</view>
@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class="blog-content">{{blog.content}}</view>
-  <view class="blog-img">
+  <view class="blog-img flex-wrap">
     <block wx:for="{{blog.img}}" wx:key="{{index}}">
       <image class="img" src="{{item}}" mode="aspectFill" catch:tap="onPreviewImage" data-imgsrc="{{item}}" data-imgs="{{blog.img}}"></image>
     </block>

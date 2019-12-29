@@ -13,9 +13,8 @@ Page({
     selectPhoto: true, // 是否显示添加图片元素
   },
 
-  onLoad: function(options) {
-    console.log(options)
-    userInfo = options
+  onLoad: function() {
+    userInfo = wx.getStorageSync('userInfo')
   },
 // 监听输入框
   onInput(event) {

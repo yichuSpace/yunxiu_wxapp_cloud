@@ -1,10 +1,10 @@
 <view class="container">
   <!-- 头部 -->
   <view class="header flex-align-center">
-    <view class="publish-container" bindtap="onPublish">
+    <view class="publish-container flex-align-center flex-center" bindtap="onPublish">
       <i class="iconfont icon-fabu"></i>
     </view>
-    <view class="search-container">
+    <view class="search-container flex_1">
       <x-search iconfont="iconfont" icon-sousuo="icon-sousuo" bind:search="onSearch" />
     </view>
   </view>

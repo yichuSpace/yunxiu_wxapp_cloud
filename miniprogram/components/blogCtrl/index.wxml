@@ -1,5 +1,5 @@
-<view class="ctrl">
-  <view class="ctrl-item" bind:tap="onComment">
+<view class="ctrl flex-align-center">
+  <view class="ctrl-item" bindtap="onComment">
     <i class="iconfont icon-pinglun icon"></i>
     <text>评论</text>
   </view>

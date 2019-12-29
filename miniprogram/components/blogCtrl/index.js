@@ -1,6 +1,6 @@
-// components/blog-ctrl/blog-ctrl.js
 let userInfo = {}
 const db = wx.cloud.database()
+
 Component({
   /**
    * 组件的属性列表
@@ -9,16 +9,14 @@ Component({
     blogId: String,
     blog: Object,
   },
-  externalClasses: ['iconfont', 'icon-pinglun', 'icon-fenxiang'],
+  externalClasses: ['iconfont', 'icon-pinglun', 'icon-fenxiang-copy'],
 
   /**
    * 组件的初始数据
    */
   data: {
-    // 登录组件是否显示
-    loginShow: false,
-    // 底部弹出层是否显示
-    modalShow: false,
+    loginShow: false,// 登录组件是否显示
+    modalShow: false,  // 底部弹出层是否显示
     content: '',
   },
 
@@ -67,9 +65,8 @@ Component({
         content: '',
       })
     },
+    // 发送评论
     onSend(event) {
-      console.log(event)
-      // 插入数据库
       let formId = event.detail.formId
       let content = event.detail.value.content
       if (content.trim() == '') {

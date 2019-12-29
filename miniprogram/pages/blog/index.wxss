@@ -17,13 +17,6 @@
 .publish-container {
   width: 68rpx;
   height: 68rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-container {
-  flex: 1;
 }
 
 .blog-list {
