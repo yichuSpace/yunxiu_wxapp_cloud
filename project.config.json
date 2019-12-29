@@ -77,6 +77,27 @@
 					"pathName": "pages/blogEdit/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/blogComment/index",
+					"pathName": "pages/blogComment/index",
+					"query": "blogId=e8f863ba5e07204b0815fe8533fb0f5c",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/profile/index",
+					"pathName": "pages/profile/index",
+					"query": "blogId=e8f863ba5e07204b0815fe8533fb0f5c",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/profilePlayhistory/index",
+					"pathName": "pages/profilePlayhistory/index",
+					"query": "blogId=e8f863ba5e07204b0815fe8533fb0f5c",
+					"scene": null
 				}
 			]
 		}

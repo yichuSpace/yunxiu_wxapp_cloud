@@ -80,7 +80,7 @@ Component({
         title: '评论中',
         mask: true,
       })
-      db.collection('blog-comment').add({
+      db.collection('blogComment').add({
         data: {
           content,
           createTime: db.serverDate(),

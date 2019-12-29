@@ -3,5 +3,5 @@
     "x-blog-card": "/components/blogCard/index",
     "x-blog-ctrl": "/components/blogCtrl/index"
   },
-  "navigationBarTitleText": "正文"
+  "navigationBarTitleText": "我的发现"
 }
