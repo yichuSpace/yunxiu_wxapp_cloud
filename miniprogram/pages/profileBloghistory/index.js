@@ -8,7 +8,7 @@ Page({
   onLoad: function(options) {
     this.getListByMiniprogram()
   },
-  
+
   // 获取列表信息
   getListByMiniprogram() {
     wx.showLoading({

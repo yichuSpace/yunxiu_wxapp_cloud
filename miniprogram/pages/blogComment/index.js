@@ -1,48 +1,38 @@
-import formatTime from '../../utils/formatTime.js'
-Page({
+import formatTime from '../../utils/formatTime'
+import { showLoading, hideLoading } from '../../utils/tipsBox';
 
+Page({
   data: {
     blog: {},
     commentList: [],
     blogId: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       blogId: options.blogId
     })
-    this._getBlogDetail()
+    this.getBlogDetail()
   },
 
-  _getBlogDetail() {
-    wx.showLoading({
-      title: '加载中',
-      mask: true,
-    })
-
+  getBlogDetail() {
+    showLoading('加载中')
     wx.cloud.callFunction({
       name: 'blog',
       data: {
         blogId: this.data.blogId,
         $url: 'detail',
       }
-    }).then((res) => {
-      let commentList = res.result.commentList.data
-      for (let i = 0, len = commentList.length; i < len; i++) {
-        commentList[i].createTime = formatTime(new Date(commentList[i].createTime))
-      }
-
+    }).then(res => {
+      const commentList = res.result.commentList.data.map(item=>{
+        item.createTime = formatTime(new Date(item.createTime))
+        return item
+      })
       this.setData({
         commentList,
         blog: res.result.detail[0],
       })
-
-      wx.hideLoading()
-      console.log(res)
+      hideLoading()
     })
   },
 
@@ -53,7 +43,7 @@ Page({
     const blog = this.data.blog
     return {
       title: blog.content,
-      path: `/pages/blog-comment/blog-comment?blogId=${blog._id}`,
+      path: `/pages/blogComment/index?blogId=${blog._id}`,
     }
   }
 })
