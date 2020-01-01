@@ -1,7 +1,8 @@
 import {
   config
 } from '../config.js'
-import tips from './tips';
+import { showWarning } from './tipsBox';
+
 class HTTP {
   constructor() {
     this.baseRestUrl = config.api_blink_url
@@ -22,7 +23,7 @@ class HTTP {
     let starttime = new Date().getTime();
     let endtime = undefined;
     wx.request({
-      url: config.api_blink_url + url,
+      url: config.api_request_url + url,
       method: method,
       data: data,
       header: {
@@ -33,9 +34,8 @@ class HTTP {
         console.warn('Info : ' + " Url : " + url + " Time : " + (endtime - starttime) / 1000 + "s");
         const code = res.statusCode.toString();
         if (code.startsWith('2')) {
-
           if (res.data.code == 302) {
-            tips.showWarning('提示', '登录失效')
+            showWarning('提示', '登录失效')
             setTimeout(() => {
               wx.removeStorageSync('userInfo')
               wx.reLaunch({

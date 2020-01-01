@@ -36,7 +36,8 @@ exports.main = async(event, context) => {
       msg: '获取成功'
     }
   })
-  // 获取详情
+
+  // 获取博客详情
   app.router('detail', async (ctx, next) => {
     let blogId = event.blogId
     // 详情查询
@@ -68,14 +69,12 @@ exports.main = async(event, context) => {
           }
         })
       }
-
     }
 
     ctx.body = {
       commentList,
       detail,
     }
-
   })
   return app.serve()
 }

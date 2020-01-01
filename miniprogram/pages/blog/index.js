@@ -1,4 +1,6 @@
+import { showLoading, hideLoading,showModels } from '../../utils/tipsBox';
 let keyword = '' // 搜索的关键字
+
 Page({
   data: {
     modalShow: false, // 控制底部弹出层是否显示
@@ -33,10 +35,11 @@ Page({
   },
   // 登录失败
   onLoginFail() {
-    wx.showModal({
-      title: '授权用户才能发布',
-      content: '',
-    })
+    showModels('授权用户才能发布')
+    // wx.showModal({
+    //   title: '授权用户才能发布',
+    //   content: '',
+    // })
   },
   // 搜索
   onSearch(event) {
